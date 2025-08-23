@@ -1,6 +1,8 @@
 const websocketService = {
     socket: null,
     listeners: {},
+    // Host do seu backend (sem https:// ou wss://)
+    baseUrl: 'disposable-chat.onrender.com',
 
     /**
      * Inicia a conexão WebSocket com o servidor usando sessão.
@@ -16,7 +18,8 @@ const websocketService = {
         }
 
         const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-        const wsUrl = `${wsProtocol}//${window.location.host}/ws/${roomId}?session_id=${token}`;
+        // Monta a URL do WebSocket usando a baseUrl
+        const wsUrl = `${wsProtocol}//${this.baseUrl}/ws/${roomId}?session_id=${token}`;
         this.socket = new WebSocket(wsUrl);
 
         this.socket.onmessage = (event) => {

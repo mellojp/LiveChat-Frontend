@@ -1,4 +1,6 @@
 const api = {
+    // URL base do seu backend em produção
+    baseUrl: 'https://disposable-chat.onrender.com',
     token: null,
 
     // Gerenciamento de token
@@ -31,7 +33,10 @@ const api = {
             headers['Authorization'] = `Bearer ${token}`;
         }
 
-        const response = await fetch(url, {
+        // Concatena a URL base com o endpoint
+        const fullUrl = this.baseUrl + url;
+
+        const response = await fetch(fullUrl, {
             ...options,
             headers
         });
@@ -96,7 +101,8 @@ const api = {
 
     async verificarSeSalaExiste(roomId) {
         try {
-            const response = await fetch(`/rooms/${roomId}`); // Sem auth necessária
+            // Usa o método 'request' para construir a URL completa
+            const response = await this.request(`/rooms/${roomId}`);
             return response.ok;
         } catch (error) {
             return false;
