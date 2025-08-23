@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // --- VERIFICAÇÕES INICIAIS ---
     if (!api.isAuthenticated()) {
-        window.location.href = '/';
+        window.location.href = 'index.html';
         return;
     }
 
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         userRooms = session.joined_rooms;
     } catch (error) {
         console.error('Erro ao obter sessão:', error);
-        window.location.href = '/';
+        window.location.href = 'index.html';
         return;
     }
 
@@ -39,12 +39,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         const salaExiste = await api.verificarSeSalaExiste(roomId);
         if (!salaExiste) {
             alert('Sala não encontrada!');
-            window.location.href = '/';
+            window.location.href = 'index.html';
             return;
         }
     } catch (error) {
         console.error('Erro ao verificar sala:', error);
-        window.location.href = '/';
+        window.location.href = 'index.html';
         return;
     }
 
@@ -57,9 +57,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (roomToLeaveId === roomId) {
                 // Se saiu da sala atual
                 if (userRooms.length > 0) {
-                    window.location.href = `/sala/${userRooms[0]}`;
+                    window.location.href = `chat.html?sala=${userRooms[0]}`;
                 } else {
-                    window.location.href = '/';
+                    window.location.href = 'index.html';
                 }
             } else {
                 // Apenas atualiza a lista
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const detailsDiv = item.querySelector('.room-details');
             detailsDiv.addEventListener('click', () => {
                 if (id !== currentRoomId) {
-                    window.location.href = `/sala/${id}`;
+                    window.location.href = `chat.html?sala=${id}`;
                 }
             });
 
@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error('Erro ao conectar WebSocket:', error);
         alert('Erro de conexão. Redirecionando...');
-        window.location.href = '/';
+        window.location.href = 'index.html';
         return;
     }
 
@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     leaveRoomBtn.addEventListener('click', async () => {
         websocketService.close();
         await api.deleteSession();
-        window.location.href = '/';
+        window.location.href = 'index.html';
     });
     
     joinNewRoomBtn.addEventListener('click', async () => {
@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             try {
                 if (await api.verificarSeSalaExiste(newRoomId)) {
                     await api.joinRoom(newRoomId);
-                    window.location.href = `/sala/${newRoomId}`;
+                    window.location.href = `chat.html?sala=${newRoomId}`;
                 } else {
                     alert('Erro: Sala não encontrada.');
                 }
@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     createNewRoomBtn.addEventListener('click', async () => {
         try {
             const data = await api.criarNovaSala();
-            window.location.href = `/sala/${data.room_id}`;
+            window.location.href = `chat.html?sala=${data.room_id}`;
         } catch (error) {
             console.error(error);
             alert('Não foi possível criar a sala.');
@@ -300,4 +300,4 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.addEventListener('beforeunload', () => {
         websocketService.close();
     });
-});
+}); 

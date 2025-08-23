@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         api.getCurrentSession().then(session => {
             if (session.joined_rooms.length > 0) {
                 // Se tem salas, vai para a primeira
-                window.location.href = `/sala/${session.joined_rooms[0]}`;
+                window.location.href = `chat.html?sala=${session.joined_rooms[0]}`;
             }
             // Se não tem salas, fica na landing para criar uma nova
             usernameInput.value = session.username;
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             const data = await api.criarNovaSala();
-            window.location.href = `/sala/${data.room_id}`;
+            window.location.href = `chat.html?sala=${data.room_id}`;
         } catch (error) {
             console.error(error);
             alert('Não foi possível criar a sala.');
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (salaExiste) {
                 // Tenta entrar na sala primeiro
                 await api.joinRoom(roomId);
-                window.location.href = `/sala/${roomId}`;
+                window.location.href = `chat.html?sala=${roomId}`;
             } else {
                 alert('Erro: Sala não encontrada. Verifique o código e tente novamente.');
             }
