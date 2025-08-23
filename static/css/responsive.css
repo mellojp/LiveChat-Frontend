@@ -1,0 +1,85 @@
+/* --- ESTILOS PARA RESPONSIVIDADE (Telas Pequenas) --- */
+@media (max-width: 768px) {
+    /* --- Ajustes Gerais --- */
+    body {
+        overflow: auto; /* Permite scroll em telas pequenas */
+    }
+
+    /* --- AJUSTES NA LANDING PAGE --- */
+    .landing-body {
+        align-items: flex-start; /* Alinha o conteúdo ao topo em telas pequenas */
+        padding-top: 4rem; /* Adiciona espaço no topo */
+    }
+
+    .landing-container {
+        padding: 2rem;
+        width: 90%; /* Ocupa a maior parte da tela */
+        max-width: none;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Adiciona uma sombra sutil */
+    }
+
+    .landing-container h1 {
+        font-size: 2.2rem; /* Reduz o tamanho do título */
+    }
+    
+    .landing-container p {
+        font-size: 0.95rem; /* Ajusta o texto de descrição */
+        margin-bottom: 2.5rem;
+    }
+
+    /* --- AJUSTES NA PÁGINA DE CHAT --- */
+    .chat-container {
+        flex-direction: column;
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    .sidebar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 300px;
+        height: 100%;
+        z-index: 100;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        border-right: 1px solid var(--border-color);
+        background-color: var(--container-bg-color);
+    }
+
+    .sidebar.visible {
+        transform: translateX(0);
+    }
+
+    .chat-panel {
+        width: 100%;
+        flex-grow: 1;
+    }
+    
+    .chat-header h3 {
+        font-size: 1rem;
+        margin-right: auto;
+    }
+
+    .menu-toggle {
+        display: block; /* Mostra o botão de menu */
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        margin-right: 1rem;
+        color: var(--text-color);
+    }
+
+    .chat-header .sidebar-action-btn {
+        display: none;
+    }
+    
+    .messages-area {
+        padding: 1rem;
+    }
+
+    .message {
+        max-width: 85%;
+    }
+}

@@ -1,0 +1,14 @@
+/* --- Arquivo Principal CSS --- */
+/* Este arquivo importa todos os outros arquivos CSS para manter a organização */
+
+/* Importa estilos base (variáveis, fontes, estilos globais) */
+@import url('base.css');
+
+/* Importa estilos específicos da landing page */
+@import url('landing.css');
+
+/* Importa estilos específicos da página de chat */
+@import url('chat.css');
+
+/* Importa estilos responsivos */
+@import url('responsive.css');

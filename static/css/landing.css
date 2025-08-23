@@ -1,0 +1,35 @@
+/* --- Estilos Específicos para a Landing Page --- */
+.landing-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.landing-container {
+    text-align: center;
+    background-color: var(--container-bg-color);
+    padding: 4rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 480px;
+    box-sizing: border-box;
+}
+
+.landing-container h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.landing-container h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.landing-container p {
+    color: var(--text-color-light);
+    margin-bottom: 2rem;
+}

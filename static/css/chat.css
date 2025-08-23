@@ -1,0 +1,321 @@
+.chat-container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 360px;
+    background-color: var(--container-bg-color);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.sidebar-header {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.search-container {
+    padding: 0 1.5rem 1.5rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+}
+
+.room-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.room-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.room-item:hover {
+    background-color: #f3f4f6;
+}
+
+.room-item.active {
+    background-color: #eef2ff;
+}
+
+.room-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.room-details h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.room-details p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--text-color-light);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar-action-btn {
+    background: none;
+    border: none;
+    color: var(--text-color-light);
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 5px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar-action-btn:hover {
+    color: var(--text-color);
+    background-color: var(--border-color);
+}
+
+.chat-panel {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color);
+    height: 100vh;
+}
+
+.chat-header {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background-color: var(--container-bg-color);
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.chat-header h3 {
+    margin: 0 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.info-icon {
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.messages-area {
+    flex-grow: 1;
+    padding: 2rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.message {
+    max-width: 65%;
+    padding: 0.75rem 1rem;
+    border-radius: 1.25rem;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+.received {
+    background-color: var(--received-msg-bg);
+    color: var(--text-color);
+    align-self: flex-start;
+    border-top-left-radius: 0.25rem;
+}
+
+.sent {
+    background-color: var(--sent-msg-bg);
+    color: var(--sent-msg-text);
+    align-self: flex-end;
+    border-top-right-radius: 0.25rem;
+}
+
+.chat-input-area {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background-color: #ffffff;
+    flex-shrink: 0;
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+}
+
+.message-input {
+    flex-grow: 1;
+    border: none;
+    padding: 0.75rem;
+    font-size: 1rem;
+    background-color: transparent;
+}
+
+.message-input:focus {
+    outline: none;
+}
+
+.send-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--button-bg-color);
+}
+
+.separator {
+    text-align: center;
+    color: var(--text-color-light);
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background-color: var(--border-color);
+}
+
+.separator::before {
+    left: 0;
+}
+
+.separator::after {
+    right: 0;
+}
+
+.menu-toggle {
+    display: none; 
+}
+
+.typing-indicator {
+    padding: 0.5rem 1rem;
+    font-style: italic;
+    color: var(--text-color-light);
+    height: 1.2rem; 
+    transition: opacity 0.3s ease;
+}
+
+.message.system {
+    align-self: center;       
+    text-align: center;        
+    max-width: fit-content;    
+    background-color: rgba(255, 255, 255, 0.85); 
+    border-radius: 0.75rem;    
+    padding: 0.5rem 1rem;      
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); 
+    color: var(--text-color);  
+    font-size: 0.875rem;       
+}
+
+.sidebar .room-list {
+    flex-grow: 1;
+}
+
+.sidebar-actions {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border-color);
+    background-color: #f8f9fa; /* Um fundo ligeiramente diferente */
+}
+
+.sidebar-actions .input-field {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem; /* Aumenta o espaço */
+}
+
+/* Estilo específico para os botões da sidebar */
+.btn-sidebar {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    background-color: #343a40; /* Cor de fundo escura */
+    color: #fff; /* Texto branco */
+    font-weight: 600;
+}
+
+/* Efeito hover específico */
+.btn-sidebar:hover {
+    background-color: #23272b;
+    opacity: 1; /* Remove a opacidade do estilo global .btn:hover */
+}
+
+.sidebar-actions .separator {
+    margin: 1rem 0;
+}
+
+.sidebar .room-item {
+    position: relative;
+    display: flex; /* Garante o alinhamento correto */
+    align-items: center;
+}
+
+/* Aplica a margem apenas aos detalhes da sala DENTRO da sidebar */
+.sidebar .room-item .room-details {
+    margin-right: 2.5rem; /* Adiciona espaço para o botão não sobrepor o texto */
+    flex-grow: 1; /* Faz os detalhes ocuparem o espaço disponível */
+}
+
+.sidebar .delete-room-btn {
+    position: absolute;
+    right: 1.7rem;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    background: none;
+    border: none;
+    color: var(--text-color-light);
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 5px;
+    
+    opacity: 1; /* Visível por padrão para mobile */
+    transition: color 0.2s ease-in-out;
+}
+
+.sidebar .delete-room-btn:hover {
+    color: #ef4444; /* Cor vermelha para indicar perigo */
+}

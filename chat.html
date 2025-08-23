@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMTAuNjcgMTZIMTAuNjhNMTYgMTZIMTYuMDFNMjEuMzMgMTZIMjEuMzRNMjYgMTZDMjYgMjEuNTIgMjEuNTIgMjYgMTYgMjZDMTQuMjcgMjYgMTIuNjQgMjUuNjMgMTEuMiAyNC45Nkw2IDI2TDcuMDQgMjAuOEM2LjM3IDE5LjM2IDYgMTcuNzMgNiAxNkM2IDEwLjQ4IDEwLjQ4IDYgMTYgNkMyMS41MiA2IDI2IDEwLjQ4IDI2IDE2WiIgCiAgICAgICAgc3Ryb2tlPSIjMDAwMDAwIiAKICAgICAgICBzdHJva2Utd2lkdGg9IjIuNSIgCiAgICAgICAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiAKICAgICAgICBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/main.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script>
+        window.salaId = "{{ sala_id }}";
+    </script>
+</head>
+<body>
+
+    <div class="chat-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Salas</h2>
+                <button id="leave-room-btn" class="sidebar-action-btn" title="Sair da sala e voltar ao início">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+            </div>
+            <ul class="room-list">
+            </ul>
+
+            <div class="sidebar-actions">
+                <input type="text" id="new-room-id-input" class="input-field" placeholder="Código da sala">
+                <button id="join-new-room-btn" class="btn btn-sidebar">Entrar</button>
+                <div class="separator">ou</div>
+                <button id="create-new-room-btn" class="btn btn-sidebar">Criar nova sala</button>
+            </div>
+        </aside>
+
+        <main class="chat-panel">
+            <header class="chat-header">
+                <button id="menu-toggle-btn" class="menu-toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <h3>Disposable Chat Room: {{ sala_id }}</h3>
+            </header>
+
+            <div id="messages-area" class="messages-area">
+                <div id="typing-indicator" class="typing-indicator"></div>
+            </div>
+
+            <form id="message-form" class="chat-input-area">
+                <input id="message-input" type="text" class="message-input" placeholder="Digite sua mensagem..." autocomplete="off">
+                <button type="submit" class="send-btn">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+        </main>
+    </div>
+    <script src="{{ url_for('static', path='/js/services/api.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/services/websocket.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/views/chat.js') }}"></script>
+</body>
+</html>
