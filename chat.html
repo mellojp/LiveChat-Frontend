@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMTAuNjcgMTZIMTAuNjhNMTYgMTZIMTYuMDFNMjEuMzMgMTZIMjEuMzRNMjYgMTZDMjYgMjEuNTIgMjEuNTIgMjYgMTYgMjZDMTQuMjcgMjYgMTIuNjQgMjUuNjMgMTEuMiAyNC45Nkw2IDI2TDcuMDQgMjAuOEM2LjM3IDE5LjM2IDYgMTcuNzMgNiAxNkM2IDEwLjQ4IDEwLjQ4IDYgMTYgNkMyMS41MiA2IDI2IDEwLjQ4IDI2IDE2WiIgCiAgICAgICAgc3Ryb2tlPSIjMDAwMDAwIiAKICAgICAgICBzdHJva2Utd2lkdGg9IjIuNSIgCiAgICAgICAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiAKICAgICAgICBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=">
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/main.css') }}">
+    <title>Disposable Chat</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMTAuNjcgMTZIMTAuNjhNMTYgMTZIMTYuMDFNMjEuMzMgMTZIMjEuMzRNMjYgMTZDMjYgMjEuNTIgMjEuNTIgMjYgMTYgMjZDMTQuMjcgMjYgMTIuNjQgMjUuNjMgMTEuMiAyNC45Nkw2IDI2TDcuMDQgMjAuOEM2LjM3IDE5LjM2IDYgMTcuNzMgNiAxNkM2IDEwLjQ4IDEwLjQ4IDYgMTYgNkMyMSu1MiA2IDI2IDEwLjQ4IDI2IDE2WiIgCiAgICAgICAgc3Ryb2tlPSIjMDAwMDAwIiAKICAgICIAICBzdHJva2Utd2lkdGg9IjIuNSIgCiAgICAgICAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiAKICAgICIAICBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=">
+    <link rel="stylesheet" href="static/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script>
-        window.salaId = "{{ sala_id }}";
+        // CORREÇÃO: Pega o ID da sala a partir da URL da página
+        const pathSegments = window.location.pathname.split('/');
+        // Pega o último segmento, que deve ser o ID da sala
+        window.salaId = pathSegments.pop() || pathSegments.pop(); 
     </script>
 </head>
 <body>
@@ -36,7 +40,7 @@
                 <button id="menu-toggle-btn" class="menu-toggle">
                     <i class="fa-solid fa-bars"></i>
                 </button>
-                <h3>Disposable Chat Room: {{ sala_id }}</h3>
+                <h3 id="room-title">Disposable Chat Room</h3>
             </header>
 
             <div id="messages-area" class="messages-area">
@@ -51,8 +55,13 @@
             </form>
         </main>
     </div>
-    <script src="{{ url_for('static', path='/js/services/api.js') }}"></script>
-    <script src="{{ url_for('static', path='/js/services/websocket.js') }}"></script>
-    <script src="{{ url_for('static', path='/js/views/chat.js') }}"></script>
+
+    <script src="static/js/services/api.js"></script>
+    <script src="static/js/services/websocket.js"></script>
+    <script src="static/js/views/chat.js"></script>
+    
+    <script>
+        document.getElementById('room-title').textContent = `Disposable Chat Room: ${window.salaId}`;
+    </script>
 </body>
 </html>
